@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/room.css' %}">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <script src="{% static 'js/sendMessage.js' %}"></script>
+</head>
+
+<body>
+  <h1 class="title" id="room_name">{{room}}</h1>
+
+  <div class="chat-field field" id="display">
+  </div>
+
+  <div class="field">
+
+    <form id="message-form">
+      {% csrf_token %}
+      <h2>message:</h2>
+
+      <input type="hidden"
+             name="username"
+             id="username"
+             value="{{username}}">
+
+      <input type="hidden"
+             name="room_id"
+             id="room_id"
+             value="{{room_details.id}}">
+
+      <input name="message"
+             id="message"
+             class="my-input">
+
+      <button class="my-button">Send</button>
+    </form>
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Live chat</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+
+<body>
+  <div class="join-room">
+
+    <form method="post" action="">
+      {% csrf_token %}
+
+      <h2>user name:</h2>
+      <input class="my-input" name="username">
+
+      <h2>room name:</h2>
+      <input class="my-input" name="roomname">
+
+      <button class="my-button" type="submit">submit</button>
+    </form>
+
+  </div>
+</body>
+
+</html>
