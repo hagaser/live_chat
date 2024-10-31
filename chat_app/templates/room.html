@@ -7,38 +7,34 @@
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/room.css' %}">
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
-  <script src="{% static 'js/sendMessage.js' %}"></script>
+  <script id="data" type="application/json">{{room_name}}/{{user_name}}</script>
+  <script src="{% static 'js/room/functions.js' %}"></script>
+  <script src="{% static 'js/room/socket.js' %}"></script>
+  <script src="{% static 'js/room/onload.js' %}"></script>
 </head>
 
 <body>
-  <h1 class="title" id="room_name">{{room}}</h1>
+  <h1 class="title" id="room-name">{{room_name}}</h1>
 
-  <div class="chat-field field" id="display">
+  <div class="chat-field field" id="message-field">
+    <!-- the block that if you see then more old messages appear -->
+    <div id="load-old"></div>
   </div>
 
-  <div class="field">
+  <div class="field" id="send-message">
 
     <form id="message-form">
-      {% csrf_token %}
-      <h2>message:</h2>
+      <p class="input-name">message:</p>
 
-      <input type="hidden"
-             name="username"
-             id="username"
-             value="{{username}}">
-
-      <input type="hidden"
-             name="room_id"
-             id="room_id"
-             value="{{room_details.id}}">
-
-      <input name="message"
-             id="message"
-             class="my-input">
+      <textarea 
+        name="message"
+        id="message"
+        class="my-input"
+        oninput="autoResize(this)"
+      ></textarea>
 
       <button class="my-button">Send</button>
     </form>
-
   </div>
 </body>
 

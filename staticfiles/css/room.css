@@ -1,0 +1,50 @@
+textarea {
+  resize: none;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  max-height: 200px;
+}
+
+textarea::-webkit-scrollbar { 
+  display: none;
+}
+
+.chat-field {
+
+  /* block-model */
+  height: 500px;
+
+  /* other */
+  overflow-y: scroll;
+
+}
+
+
+.title {
+  text-align: center;
+}
+
+.message {
+
+  /* block-model */
+  margin-bottom: 5px;
+
+  /* decoration */
+  border: 3px solid;
+
+  /* typography */
+  word-wrap: break-word;
+}
+
+.field {
+
+  /* block-model */
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3%;
+
+  /* decoration */
+  border: 3px solid;
+}

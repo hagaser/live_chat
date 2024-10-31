@@ -1,61 +1,46 @@
-from django.shortcuts import render, redirect
-from .models import Room, Message
-from django.http import HttpResponse, JsonResponse
 import json
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, JsonResponse
+
+from .models import Room, Message
 
 
 # Create your views here.
 
 
 def index(request):
+    # if get request enter to the room
     if request.method == 'POST':
 
-        roomname = request.POST['roomname']
-        username = request.POST['username']
+        room_name = request.POST['room-name']
+        user_name = request.POST['user-name']
 
-        if Room.objects.filter(name=roomname).exists():  # if current room already exists
+        # if current room already exists then pass
+        if Room.objects.filter(name=room_name).exists():
             pass
 
-        else:
-            new_room = Room.objects.create(name=roomname)  # if not then create
+        else: # if not then create
+            new_room = Room.objects.create(name=room_name)
             new_room.save()
 
-        return redirect('/'+roomname+'/?user_name='+username)  # go to this room
+        # save name for the session
+        request.session['user_name'] = user_name
+        # go to this room
+        return redirect('/'+room_name+'/')
 
-    else:
+    else: # if we don't try to connect to the room
         return render(request, 'index.html')
 
 
 def room(request, room):
 
-    username = request.GET.get('user_name')
-    room_details = Room.objects.get(name=room)  # get current room object
+    # get user name
+    user_name = request.session.get('user_name')
+
     data = {
-        'username': username,
-        'room': room,
-        'room_details': room_details,
-    }
+        'user_name': user_name,
+        'room_name': room,
+    } 
 
     return render(request, 'room.html', data)
-
-
-def send(request):
-
-    data = json.loads(request.body)
-
-    message = data.get('message')
-    username = data.get('username')
-    room_id = data.get('room_id')
-
-    new_message = Message.objects.create(value=message,
-                                         userName=username,
-                                         roomName=room_id)
-    new_message.save()
-
-
-def getMessages(request, room):
-
-    room_details = Room.objects.get(name=room)  # get current room object
-    messages = Message.objects.filter(roomName=room_details.id)  # get messages with current room object
-
-    return JsonResponse({"messages": list(messages.values())})  # return messages in json

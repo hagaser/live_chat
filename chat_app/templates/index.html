@@ -6,19 +6,20 @@
   <title>Live chat</title>
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <script src="{% static 'js/indexValidation.js' %}"></script>
 </head>
 
 <body>
-  <div class="join-room">
+  <div class="join-room" id="find-room-block">
 
-    <form method="post" action="">
+    <form method="post" action="" id="find-room">
       {% csrf_token %}
 
-      <h2>user name:</h2>
-      <input class="my-input" name="username">
+      <p class="input-name">user name:</p>
+      <input class="my-input" name="user-name" id="user-name">
 
-      <h2>room name:</h2>
-      <input class="my-input" name="roomname">
+      <p class="input-name">room name:</p>
+      <input class="my-input" name="room-name" id="room-name">
 
       <button class="my-button" type="submit">submit</button>
     </form>

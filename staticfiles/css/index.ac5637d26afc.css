@@ -1,0 +1,47 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.my-input {
+
+  /* block-model */
+  width: 100%;
+  margin-bottom: 30px;
+
+  /* decoration */
+  background-color: transparent;
+
+}
+
+.my-button {
+
+  /* block-model */
+  padding: 3px;
+
+  /* decoration */
+  background-color: transparent;
+
+}
+
+.join-room {
+
+  /* block-model */
+  width: 50%;
+  margin-top: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5%;
+
+  /* decoration */
+  border: 3px solid;
+  
+}
+
+.input-name {
+  font-size: 2em;
+}
+
+.error {
+  color: red;
+}

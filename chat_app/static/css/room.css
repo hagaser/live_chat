@@ -1,12 +1,24 @@
+textarea {
+  resize: none;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+textarea::-webkit-scrollbar { 
+  display: none;
+}
+
 .chat-field {
 
   /* block-model */
   height: 500px;
 
   /* other */
-  overflow: scroll;
+  overflow-y: scroll;
 
 }
+
 
 .title {
   text-align: center;
