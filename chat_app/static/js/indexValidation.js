@@ -9,7 +9,7 @@ const throwError = (text) => {
 
 // remove spases in begin and end and replase spases with "_"
 const formatting = (str) => {
-  str.trim().replace(/ /g, '_');
+  return str.trim().replace(/ /g, '_');
 }
 
 
@@ -30,11 +30,8 @@ window.onload = () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const userName = document.querySelector('#user-name').value;
-    const roomName = document.querySelector('#room-name').value;
-    // remove spases in begin and end and replase spases with "_"
-    formatting(userName);
-    formatting(roomName);
+    const userName = formatting(document.querySelector('#user-name').value);
+    const roomName = formatting(document.querySelector('#room-name').value);
 
     // not allowed char
     const regex = /[\/=`~!@#$%^&*()\-+="№;:?{}\[\]'\\|<>,.]/;
@@ -53,6 +50,8 @@ window.onload = () => {
 
     // if empty or submit
     if (userName && roomName) {
+      document.querySelector('#room-name').value = roomName;
+      document.querySelector('#user-name').value = userName;
       form.submit();
     } else {
       throwError("One of the fields is empty");
