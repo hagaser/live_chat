@@ -62,6 +62,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             event = {
               'type': 'send_message',
               'message': json_data['message'],
+              'userName': self.user_name
             }
 
             await self.save_message(event)
@@ -77,7 +78,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         await self.send(text_data=json.dumps({
             'message': event['message'],
-            'userName': self.user_name,
+            'userName': event['userName'],
             'date': datetime.now(timezone(timedelta(hours=self.timezone))).isoformat(),
             'new': True
         }))

@@ -43,11 +43,12 @@ const addMessage = (data) => {
     messageField.scrollTop = messageField.scrollHeight;
 
   } else { // if old
-    const oldScrollData = messageField.scrollTop + messageField.scrollHeight;
+    const oldScrollTop = messageField.scrollTop;
+    const oldScrollHeight = messageField.scrollHeight;
 
     messageField.insertBefore(message, loadOld.nextSibling);
     
     // make scrollbar stay on the place
-    messageField.scrollTop = messageField.scrollHeight - oldScrollData;
+    messageField.scrollTop = messageField.scrollHeight - oldScrollHeight + oldScrollTop;
   }
 }
